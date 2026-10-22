@@ -20,8 +20,8 @@ Every developer re-deriving this information from scratch is wasteful. This repo
 
 Stable raw URLs (replace `main` with a release tag to pin a version):
 
-- `https://raw.githubusercontent.com/<owner>/agent-safety-bed/main/agent-pack/patent-tiers.json`
-- `https://raw.githubusercontent.com/<owner>/agent-safety-bed/main/agent-pack/PATENT_POLICY.md`
+- `https://raw.githubusercontent.com/CireSnave/agent-safety-bed/main/agent-pack/patent-tiers.json`
+- `https://raw.githubusercontent.com/CireSnave/agent-safety-bed/main/agent-pack/PATENT_POLICY.md`
 
 ## Tiers
 
