@@ -9,7 +9,7 @@ Every developer re-deriving this information from scratch is wasteful. This repo
 | Path | What it is |
 |---|---|
 | `agent-pack/PATENT_POLICY.md` | The rules. Decision rules, hard denylist, flag-for-review triggers, license-direction cheat sheet, escape hatch. Point your agent's `AGENTS.md` at this file. |
-| `agent-pack/patent-tiers.json` | The data. 66 AI/ML techniques (modern + classical AI) with license, patent tier (`tier`, one of T1–T5, plus `secondary_tiers`, `caveats` and `watch` arrays), confidence, the date researched, a machine-readable `action` (`allow`, `allow-with-conditions`, `separate-component`, `avoid`, `flag-for-review`), and a one-line note. Grep it at decision time. |
+| `agent-pack/patent-tiers.json` | The data. 66 AI/ML techniques (modern + classical AI) with license, patent tier (`tier`, one of T1–T5, plus `secondary_tiers`, `caveats` and `watch` arrays), confidence, the date researched, a machine-readable `action` (`allow`, `allow-with-conditions`, `separate-component`, `avoid`, `flag-for-review`), a one-line note, and `match` (exact `cargo`/`pypi`/`npm`/`maven` package names, so tools can recognise a declared dependency). Grep it at decision time. |
 | `agent-pack/patent-tiers.schema.json` | JSON Schema (2020-12) for the data file. CI validates every change against it (`npm ci && npm run validate`). |
 | `docs/patent-safety-technique-list.pdf` | The full reference document this is distilled from: 67 technique listings with license verification, patent research, the defensive-posture playbook, and how patent holders publicly grant free use. For humans; agents don't need it. |
 

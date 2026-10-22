@@ -1,5 +1,14 @@
 # Changelog
 
+## 1.2.0 - 2026-10-22
+
+Data-format change (minor: every entry gains a required field). No patent claim, tier, action or note text changed.
+
+- Every entry carries `match`: exact registry package names (`cargo`, `pypi`, `npm`, `maven` as `group:artifact`) so a tool can recognise a declared dependency. `[]` where no name is verified; 48 of 66 entries have at least one name. A name lists an index match for a dependency, not proof the avoided technique is in use (see the entry's note).
+- Each name was checked against its registry (crates.io, PyPI, npm, Maven Central) and its description or repository read to confirm it denotes the entry; same-named unrelated packages (for example PyPI `shogun`, `rllib`, `pellet`; crates `scallop`, `stan`, `souffle`) are deliberately not listed.
+- `npm run validate` also checks names are lowercase, maven names are `group:artifact`, and no package is claimed by two entries (after PEP 503 / crate hyphen-underscore normalisation).
+- `npm run verify-match` checks every listed name exists on its registry (network; run by hand, not in CI).
+
 ## 1.1.3 - 2026-10-22
 
 - README raw URLs and the schema `$id` point at the ThinkersJournal organisation (the repository moved).

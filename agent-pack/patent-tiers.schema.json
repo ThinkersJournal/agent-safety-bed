@@ -53,11 +53,23 @@
   },
   "$defs": {
     "date": { "type": "string", "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}$" },
+    "match": {
+      "type": "object",
+      "required": ["cargo", "pypi", "npm", "maven"],
+      "additionalProperties": false,
+      "properties": {
+        "cargo": { "$ref": "#/$defs/names" },
+        "pypi": { "$ref": "#/$defs/names" },
+        "npm": { "$ref": "#/$defs/names" },
+        "maven": { "$ref": "#/$defs/names" }
+      }
+    },
+    "names": { "type": "array", "items": { "type": "string", "minLength": 1 }, "uniqueItems": true },
     "tier": { "enum": ["T1", "T2", "T3", "T4", "T5"] },
     "strings": { "type": "array", "items": { "type": "string", "minLength": 1 }, "uniqueItems": true },
     "technique": {
       "type": "object",
-      "required": ["id", "technique", "part", "branch", "license", "tier", "secondary_tiers", "caveats", "watch", "confidence", "action", "note", "researched"],
+      "required": ["id", "technique", "part", "branch", "license", "tier", "secondary_tiers", "caveats", "watch", "confidence", "action", "note", "researched", "match"],
       "additionalProperties": false,
       "properties": {
         "id": { "type": "string", "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$" },
@@ -73,7 +85,8 @@
         "confidence": { "type": "string", "minLength": 1 },
         "action": { "enum": ["allow", "allow-with-conditions", "separate-component", "avoid", "flag-for-review"] },
         "note": { "type": "string", "minLength": 1 },
-        "researched": { "$ref": "#/$defs/date" }
+        "researched": { "$ref": "#/$defs/date" },
+        "match": { "$ref": "#/$defs/match" }
       }
     }
   }
