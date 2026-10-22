@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.1.1 - 2026-10-22
+
+- Removed `ANNOUNCEMENT.md` (a social-media draft, not part of the pack).
+- Policy review hand-offs name "the human owner/maintainer" instead of a person.
+
 ## 1.1.0 - 2026-10-22
 
 Data-format change (minor: `tier` values are now a strict enum). No patent claim, source or note text changed.
