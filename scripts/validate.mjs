@@ -13,16 +13,14 @@ const validate = ajv.compile(read('patent-tiers.schema.json'));
 // Registry name normalisation: PEP 503 for PyPI, hyphen/underscore equivalence for crates.
 const normalise = (eco, n) => (eco === 'pypi' ? n.replace(/[-_.]+/g, '-') : eco === 'cargo' ? n.replace(/_/g, '-') : n);
 
-// Entries researched on or after EVIDENCE_FROM must carry evidence: every patent number quoted in
-// note/caveats/watch needs an evidence entry with a URL whose claim or URL names that number.
-const EVIDENCE_FROM = "2026-10-22";
+// Every entry must carry evidence, and every patent number quoted in note/caveats/watch needs an
+// evidence entry with a URL whose claim or URL names that number.
 const PATENT_NO = /(?:US|EP|WO)s?[0-9][0-9,/ ]{4,}[0-9]/g;
 const digits = (s) => s.replace(/D/g, "");
 function evidenceProblems(t) {
   const out = [];
   const ev = t.evidence ?? [];
-  if (t.researched >= EVIDENCE_FROM && ev.length === 0) out.push(`${t.id}: researched ${t.researched} but has no evidence`);
-  if (t.researched < EVIDENCE_FROM) return out;
+  if (ev.length === 0) out.push(`${t.id}: has no evidence`);
   for (const e of ev) if (e.accessed > t.researched) out.push(`${t.id}: evidence accessed ${e.accessed} is after researched ${t.researched}`);
   const text = [t.note, ...t.caveats, ...t.watch].join(" ");
   for (const n of new Set((text.match(PATENT_NO) ?? []).map(digits))) {

@@ -1,5 +1,7 @@
 # Patent-Safety Policy for Coding Agents
 
+**Status of the facts below:** patent numbers, dates and holders in this file were re-checked on 2026-10-22 against Google Patents pages; the evidence is in `patent-tiers.json`. Nothing here is legal advice or clearance.
+
 **Purpose:** Keep patent and license risk out of the codebase without bloating your context. You do NOT need the full Patent-Safety Technique List document. You need this policy plus the machine-readable index (`patent-tiers.json`, same directory).
 
 **When to consult the index:** before (1) adding a new dependency, (2) choosing a named algorithm/technique to implement, (3) copying or porting code from another project, (4) building a feature in one of these areas: inference serving/scheduling, speech recognition, word embeddings, diffusion models, RL (DQN, async actor-critic), RAG, multi-agent orchestration, knowledge-graph/OWL inference, maintenance scheduling. A quick grep for the technique name in `patent-tiers.json` is enough. Do NOT load the full document.
@@ -15,11 +17,11 @@
 
 ## Hard denylist (action: avoid)
 
-- **Coqui STT / DeepSpeech-lineage end-to-end speech recognition** — Baidu US 10,332,509 in force ~2036. Do not ship.
-- **gensim word2vec** — Google US 9,037,464 in force ~2033, and LGPL-2.1 gives no patent grant. Use Google's Apache-2.0 word2vec C tool instead.
-- **Latent diffusion training/serving (stable-diffusion-webui lineage)** — dense growing thicket (Google, Baidu, Tencent). Do not build on.
-- **DQN (including via Stable-Baselines3)** — Google/DeepMind US9679258B2 in force ~2035. Prefer PPO/SAC/TD3.
-- **A3C/IMPALA/APPO async actor-critic** — DeepMind US11334792B2 in force ~2036.
+- **Coqui STT / DeepSpeech-lineage end-to-end speech recognition** — Baidu US 10,332,509, anticipated expiry 2036-11-21 per Google Patents. Do not ship.
+- **gensim word2vec** — Google US 9,037,464, expiry ~2033 (computed from filing date), and LGPL-2.1 gives no patent grant. The Apache-2.0 word2vec C tool is a candidate alternative, but its patent-grant scope is not verified: flag for review.
+- **Latent diffusion training/serving (stable-diffusion-webui lineage)** — dense growing thicket (reported, not verified: Baidu, Tencent; Lemon Inc US12136141B2 confirmed). Do not build on.
+- **DQN (including via Stable-Baselines3)** — Google/DeepMind US9679258B2, expiry 2035-07-31 per Google Patents. Prefer PPO/SAC/TD3.
+- **A3C/IMPALA/APPO async actor-critic** — DeepMind US11334792B2, adjusted expiry 2038-08-06 per Google Patents.
 - **DB-materialized forward-chaining RDFS/OWL inference** — Oracle US8401991B2 active to 2030. Use in-memory/query-time reasoning instead.
 - **Parallel Bayesian-network structure learning (reimplementation)** — Microsoft US 8,005,770 B2 to 2030. Use pgmpy as a dependency; stick to classical published algorithms.
 
@@ -29,10 +31,10 @@
 - **Multi-agent orchestration** products (C3.ai US 12,111,859).
 - **RAG** features (watch the Many Worlds v. OpenAI docket).
 - **DoRA** variants (NVIDIA application pending).
-- **Ahead-of-time compiled rule engines** (Honeywell US8001070B2).
+- **Ahead-of-time compiled rule engines** (Honeywell US8001070B2, to 2030-04-18).
 - **Maintenance/field-service scheduling** SaaS features (US11797951B2).
 - **Probabilistic-programming compilers** with data-parallel IR (Oracle family).
-- **Top-k / top-quality planning** features (IBM thicket with continuation activity).
+- **Top-k / top-quality planning** features (reported, not verified: an IBM thicket with continuation activity; IBM US11526791B2, confirmed, covers planning-task generation via a causal graph).
 - Anything where the index confidence is **medium-low or lower** and the feature is core to the product.
 
 ## License-direction cheat sheet
@@ -51,4 +53,4 @@ When uncertain: implement the straightforward thing, note the uncertainty in you
 
 ## What this policy is not
 
-Engineering guidance only — not legal advice, not freedom-to-operate clearance. Patent data is dated 2026-09-12 and perishable. Anything flagged here that becomes product-critical gets a real attorney review before launch.
+Engineering guidance only — not legal advice, not freedom-to-operate clearance. Patent data was last checked 2026-10-22 (each claim's source and date are in the `evidence` list in `patent-tiers.json`; where a claim says "reported, not verified" it was not confirmed) and is perishable. Anything flagged here that becomes product-critical gets a real attorney review before launch.
