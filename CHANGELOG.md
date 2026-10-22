@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.3.1 - 2026-10-22
+
+Evidence pass, part 2 of 3 (classical-ai: the other 35 entries). Same method and fields as 1.3.0.
+
+- 8 contradicted claims corrected: Qualcomm US11481468B2 claims a multi-solver ensemble (not "distributed"); US 4,546,432 is a hardware Prolog patent, not a WAM improvement; no source for a 2004 ReteOO date (Drools 4.0 is July 2007, Honeywell priority 2007-12-17); the W3C RF policy also reaches submitters and other licensors; IBM US11526791B2 claims planning-task generation via a causal graph; Oracle US 10,496,929 expires 2037 not ~2034.
+- Unconfirmed "no patents found" and licence-grant claims are reworded "reported, not verified"; positive claims that rested on them were downgraded: allow 14 to 4, flag-for-review 0 to 18, separate-component 10 to 5.
+- Still part 3: PATENT_POLICY, README, NOTICE, and making `evidence` required.
+
 ## 1.3.0 - 2026-10-22
 
 Evidence pass, part 1 of 3 (modern-ml: 31 of 66 entries). Requested by CireSnave (decision 243): check each claim, record the date and the links.
