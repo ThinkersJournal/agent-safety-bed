@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.1.2 - 2026-10-22
+
+- Policy: new rule 6 and a cheat-sheet row stating how `MIT OR Apache-2.0` dual licensing is treated (take the Apache-2.0 option).
+
 ## 1.1.1 - 2026-10-22
 
 - Removed `ANNOUNCEMENT.md` (a social-media draft, not part of the pack).
