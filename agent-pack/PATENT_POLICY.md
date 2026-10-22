@@ -23,7 +23,7 @@
 - **DB-materialized forward-chaining RDFS/OWL inference** — Oracle US8401991B2 active to 2030. Use in-memory/query-time reasoning instead.
 - **Parallel Bayesian-network structure learning (reimplementation)** — Microsoft US 8,005,770 B2 to 2030. Use pgmpy as a dependency; stick to classical published algorithms.
 
-## Flag for Eric's review (action: flag-for-review, or notes saying FLAG)
+## Flag for the human owner's review (action: flag-for-review, or notes saying FLAG)
 
 - Modifying **continuous-batching scheduling** in inference servers (FriendliAI portfolio).
 - **Multi-agent orchestration** products (C3.ai US 12,111,859).
@@ -47,7 +47,7 @@
 
 ## Escape hatch
 
-When uncertain: implement the straightforward thing, note the uncertainty in your summary, and flag it for Eric. You surface risk; you do not adjudicate it. Never silently choose a denylisted technique because it was convenient.
+When uncertain: implement the straightforward thing, note the uncertainty in your summary, and flag it for the human owner/maintainer. You surface risk; you do not adjudicate it. Never silently choose a denylisted technique because it was convenient.
 
 ## What this policy is not
 

@@ -9,7 +9,8 @@ Every developer re-deriving this information from scratch is wasteful. This repo
 | Path | What it is |
 |---|---|
 | `agent-pack/PATENT_POLICY.md` | The rules. Decision rules, hard denylist, flag-for-review triggers, license-direction cheat sheet, escape hatch. Point your agent's `AGENTS.md` at this file. |
-| `agent-pack/patent-tiers.json` | The data. 66 AI/ML techniques (modern + classical AI) with license, patent tier (T1–T5), confidence, a machine-readable `action` (`allow`, `allow-with-conditions`, `separate-component`, `avoid`, `flag-for-review`), and a one-line note. Grep it at decision time. |
+| `agent-pack/patent-tiers.json` | The data. 66 AI/ML techniques (modern + classical AI) with license, patent tier (`tier`, one of T1–T5, plus `secondary_tiers`, `caveats` and `watch` arrays), confidence, the date researched, a machine-readable `action` (`allow`, `allow-with-conditions`, `separate-component`, `avoid`, `flag-for-review`), and a one-line note. Grep it at decision time. |
+| `agent-pack/patent-tiers.schema.json` | JSON Schema (2020-12) for the data file. CI validates every change against it (`npm ci && npm run validate`). |
 | `docs/patent-safety-technique-list.pdf` | The full reference document this is distilled from: 67 technique listings with license verification, patent research, the defensive-posture playbook, and how patent holders publicly grant free use. For humans; agents don't need it. |
 
 ## How agents should use this
@@ -31,9 +32,11 @@ Stable raw URLs (replace `main` with a release tag to pin a version):
 - **T4** — published prior art, nothing asserted (medium confidence at best — weakest positive tier)
 - **T5** — caution: in-force patents, aggressive holders, or litigation
 
+An entry's `tier` is its primary tier. Where part of an entry sits in another tier, `secondary_tiers` lists it, `caveats` and `watch` quote the relevant sentences of `note`, and `tier_label` keeps the original free-text label.
+
 ## Contributing
 
-The patent landscape is perishable. If you find an error, a newly granted patent, an expired one, or a technique that should be added: open a PR. Each entry carries its research date; the goal is annual re-screening at minimum.
+The patent landscape is perishable. If you find an error, a newly granted patent, an expired one, or a technique that should be added: open a PR. Each entry carries its research date in `researched`; run `npm ci && npm run validate` before opening the PR. The goal is annual re-screening at minimum.
 
 ## Disclaimer
 
