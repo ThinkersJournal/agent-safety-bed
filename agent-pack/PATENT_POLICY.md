@@ -11,6 +11,7 @@
 3. **Never merge into the Apache-2.0 tree:** GPL (any version), AGPL (any version), LGPL (any version). These MUST live as separate services/components behind a process or API boundary, honoring their own license. This is a hard rule, not a judgment call.
 4. **Prefer using the licensed implementation over reimplementing the technique.** A clean-room reimplementation avoids copyleft but LOSES the contributor patent grant. Since our source is always public anyway, copyleft obligations are trivially satisfied — using the code buys more protection than dodging it.
 5. **Old ≠ clear.** A technique from the 1970s can still sit inside a live thicket of improvement patents. Foundational expiry is not field clearance. Check the index entry, not the technique's age.
+6. **Dual-licensed `MIT OR Apache-2.0` code (ours and incoming).** Our own projects are published under `MIT OR Apache-2.0` (this repository itself is Apache-2.0 only). For anything offered under that pair, take the Apache-2.0 option and treat it as Apache-2.0 under this policy: Apache-2.0 carries the express contributor patent grant, MIT does not (rule 1). A consumer who elects MIT instead gets no express patent grant from us, so for a patent-sensitive decision rely on the Apache-2.0 option, not MIT. "Our Apache-2.0 tree" in this policy means a `MIT OR Apache-2.0` tree as well; rule 3 (never merge GPL/AGPL/LGPL) applies to both unchanged. For any other `X OR Y` licence, elect the option this policy accepts and record the election (see the GNU Prolog entry, which requires documenting the LGPL election).
 
 ## Hard denylist (action: avoid)
 
@@ -39,6 +40,7 @@
 | Incoming license | Can it merge into our Apache-2.0 tree? |
 |---|---|
 | Apache-2.0, MIT, BSD, ISC | Yes |
+| MIT OR Apache-2.0 (dual) | Yes — elect Apache-2.0 (rule 6) |
 | MPL-2.0, EPL-2.0, UPL-1.0 | Yes, with file-level hygiene |
 | LGPL (any version) | No — separate component, declared dependency |
 | GPL, AGPL (any version) | No — separate service behind a process/API boundary |
