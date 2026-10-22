@@ -8,7 +8,7 @@ const headers = { 'User-Agent': 'agent-safety-bed verify-match (https://github.c
 const url = {
   pypi: (n) => `https://pypi.org/pypi/${n.replace(/\[.*$/, '')}/json`,
   cargo: (n) => `https://crates.io/api/v1/crates/${n}`,
-  npm: (n) => `https://registry.npmjs.org/${n.replace('/', '%2f')}`,
+  npm: (n) => `https://registry.npmjs.org/${encodeURIComponent(n)}`,
   maven: (n) => {
     const [g, a] = n.split(':');
     return `https://repo1.maven.org/maven2/${g.replaceAll('.', '/')}/${a}/maven-metadata.xml`;
