@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://raw.githubusercontent.com/ciresnave/agent-safety-bed/main/agent-pack/patent-tiers.schema.json",
+  "$id": "https://raw.githubusercontent.com/ThinkersJournal/agent-safety-bed/main/agent-pack/patent-tiers.schema.json",
   "title": "agent-safety-bed patent-tiers.json",
   "type": "object",
   "required": ["_meta", "techniques"],
