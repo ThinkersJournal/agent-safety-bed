@@ -1,0 +1,17 @@
+{
+  "name": "agent-safety-bed",
+  "private": true,
+  "type": "module",
+  "description": "Validation tooling for agent-safety-bed (not published).",
+  "scripts": {
+    "validate": "node scripts/validate.mjs"
+  },
+  "devDependencies": {
+    "ajv": "8.20.0",
+    "ajv-formats": "3.0.1"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "version": "1.1.0"
+}
