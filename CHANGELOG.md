@@ -1,5 +1,15 @@
 # Changelog
 
+## 1.3.0 - 2026-10-22
+
+Evidence pass, part 1 of 3 (modern-ml: 31 of 66 entries). Requested by CireSnave (decision 243): check each claim, record the date and the links.
+
+- New optional per-entry `evidence[]`: one object per checked claim with `claim`, `kind`, `url` (the page actually read), `accessed` (date), `finding` (confirmed | not-confirmed | contradicted | unreachable), optional `detail`, and `method` (required for an absence claim: database, query, blind spot). `researched` is now the date of this pass.
+- `npm run validate`: an entry researched on or after 2026-10-22 must have evidence, and every patent number quoted in its note, caveats or watch must be named by an evidence entry with a URL.
+- 13 contradicted claims corrected (patent kind code, expiry dates, assignees, licences, a missing VITS patent family; see the PR).
+- Claims that could not be confirmed (Google Patents search is not fetchable by the tools used) are reworded "reported, not verified"; a positive `allow` or tier that rested on one was downgraded to `flag-for-review`. Actions: allow 12 to 9, flag-for-review 1 to 11, allow-with-conditions 10 to 6, separate-component 5 to 2.
+- Not changed here: classical-ai entries (part 2), PATENT_POLICY, README, NOTICE (part 3).
+
 ## 1.2.0 - 2026-10-22
 
 Data-format change (minor: every entry gains a required field). No patent claim, tier, action or note text changed.

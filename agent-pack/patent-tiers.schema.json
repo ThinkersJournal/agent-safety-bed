@@ -67,6 +67,23 @@
     "names": { "type": "array", "items": { "type": "string", "minLength": 1 }, "uniqueItems": true },
     "tier": { "enum": ["T1", "T2", "T3", "T4", "T5"] },
     "strings": { "type": "array", "items": { "type": "string", "minLength": 1 }, "uniqueItems": true },
+    "evidence": {
+      "type": "object",
+      "description": "One checked claim: what was claimed, where it was checked, when, and what was found. For an absence (kind=absence, e.g. no patents found) url is the search URL and method records database, query and blind spot.",
+      "required": ["claim", "kind", "url", "accessed", "finding"],
+      "additionalProperties": false,
+      "properties": {
+        "claim": { "type": "string", "minLength": 1 },
+        "kind": { "enum": ["license", "patent", "expiry", "assignee", "litigation", "pledge", "absence", "status", "other"] },
+        "url": { "type": "string", "format": "uri", "pattern": "^https?://" },
+        "accessed": { "$ref": "#/$defs/date" },
+        "finding": { "enum": ["confirmed", "not-confirmed", "contradicted", "unreachable"] },
+        "method": { "type": "string", "minLength": 1 },
+        "detail": { "type": "string", "minLength": 1 }
+      },
+      "if": { "properties": { "kind": { "const": "absence" } }, "required": ["kind"] },
+      "then": { "required": ["method"], "properties": { "method": { "type": "string" } } }
+    },
     "technique": {
       "type": "object",
       "required": ["id", "technique", "part", "branch", "license", "tier", "secondary_tiers", "caveats", "watch", "confidence", "action", "note", "researched", "match"],
@@ -86,7 +103,8 @@
         "action": { "enum": ["allow", "allow-with-conditions", "separate-component", "avoid", "flag-for-review"] },
         "note": { "type": "string", "minLength": 1 },
         "researched": { "$ref": "#/$defs/date" },
-        "match": { "$ref": "#/$defs/match" }
+        "match": { "$ref": "#/$defs/match" },
+        "evidence": { "type": "array", "items": { "$ref": "#/$defs/evidence" } }
       }
     }
   }
