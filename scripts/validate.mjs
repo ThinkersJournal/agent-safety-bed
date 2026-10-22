@@ -13,6 +13,24 @@ const validate = ajv.compile(read('patent-tiers.schema.json'));
 // Registry name normalisation: PEP 503 for PyPI, hyphen/underscore equivalence for crates.
 const normalise = (eco, n) => (eco === 'pypi' ? n.replace(/[-_.]+/g, '-') : eco === 'cargo' ? n.replace(/_/g, '-') : n);
 
+// Entries researched on or after EVIDENCE_FROM must carry evidence: every patent number quoted in
+// note/caveats/watch needs an evidence entry with a URL whose claim or URL names that number.
+const EVIDENCE_FROM = "2026-10-22";
+const PATENT_NO = /(?:US|EP|WO)s?[0-9][0-9,/ ]{4,}[0-9]/g;
+const digits = (s) => s.replace(/D/g, "");
+function evidenceProblems(t) {
+  const out = [];
+  const ev = t.evidence ?? [];
+  if (t.researched >= EVIDENCE_FROM && ev.length === 0) out.push(`${t.id}: researched ${t.researched} but has no evidence`);
+  if (t.researched < EVIDENCE_FROM) return out;
+  for (const e of ev) if (e.accessed > t.researched) out.push(`${t.id}: evidence accessed ${e.accessed} is after researched ${t.researched}`);
+  const text = [t.note, ...t.caveats, ...t.watch].join(" ");
+  for (const n of new Set((text.match(PATENT_NO) ?? []).map(digits))) {
+    if (!ev.some((e) => digits(`${e.claim} ${e.url}`).includes(n))) out.push(`${t.id}: patent number ${n} in note has no evidence entry naming it`);
+  }
+  return out;
+}
+
 const problems = [];
 if (!validate(data)) {
   for (const e of validate.errors) problems.push(`${e.instancePath || '/'} ${e.message}`);
@@ -27,6 +45,7 @@ if (!validate(data)) {
     if (t.secondary_tiers.includes(t.tier)) problems.push(`${t.id}: secondary_tiers repeats tier`);
     for (const s of [...t.caveats, ...t.watch]) if (!t.note.includes(s)) problems.push(`${t.id}: "${s}" is not a verbatim fragment of note`);
     if (t.tier === 'T5' && t.action === 'allow') problems.push(`${t.id}: T5 entry may not be action=allow`);
+    problems.push(...evidenceProblems(t));
     for (const [eco, names] of Object.entries(t.match)) {
       for (const n of names) {
         if (n !== n.toLowerCase()) problems.push(`${t.id}: match.${eco} "${n}" must be lowercase`);
