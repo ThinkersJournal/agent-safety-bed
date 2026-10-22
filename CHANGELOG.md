@@ -5,7 +5,7 @@
 Evidence pass, part 3 of 3 (policy, README, NOTICE; `evidence` becomes required).
 
 - Schema: `evidence` is required on every entry; `npm run validate` requires it everywhere and checks every quoted patent number against an evidence URL. `_meta.date` is 2026-10-22; `_meta.field_key` documents `evidence`.
-- NOTICE: removed the "defensive publication / prior art" statement (no counsel has reviewed it); the copyright line is unchanged.
+- NOTICE: removed the "defensive publication / prior art" statement (no counsel has reviewed it); the copyright holder is now "Thinker's Journal" (organisation, not a personal name) in NOTICE and the LICENSE appendix.
 - README: the count discrepancy is stated (the PDF lists 67 evaluations, the index 66) and the PDF is marked as not re-verified and superseded by the index where they differ; the disclaimer says no attorney has reviewed the repository and that "no patents found" means a limited web search; T4 wording softened.
 - PATENT_POLICY: dates and holders updated from the evidence (A3C/IMPALA patent expires 2038-08-06, not ~2036; US12136141B2 is Lemon Inc; the word2vec alternative's patent grant is unverified).
 
