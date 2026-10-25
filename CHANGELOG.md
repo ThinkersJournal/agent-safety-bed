@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.4.1 - 2026-10-25
+
+Added `.github/CODEOWNERS` (`* @ciresnave`). No change to the data or scripts.
+
 ## 1.4.0 - 2026-10-22
 
 Evidence pass, part 3 of 3 (policy, README, NOTICE; `evidence` becomes required).
